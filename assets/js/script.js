@@ -58,3 +58,10 @@ searchFormEl.addEventListener("submit", function(event) {
     saveSearchHistory();
     createHistoryButtons(city);
 });
+
+prevSearchEl.addEventListener("click", function(event) {
+    var city = event.target.getAttribute("history-city");
+    if(city){
+        getWeather(city);
+    }
+});
