@@ -7,6 +7,8 @@ var currentResultEl = document.getElementById('current-search-container');
 var prevSearchEl = document.getElementById('previous-search-elements');
 var currentSearchEl = document.getElementById('current-search');
 
+var apiKey = "335c0c4e60cb6c9ae9deab5a5c9ce481";
+
 var formSubmitHandler = function (event) {
     event.preventDefault();
 };
