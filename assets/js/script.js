@@ -11,13 +11,25 @@ var apiKey = "335c0c4e60cb6c9ae9deab5a5c9ce481";
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
+    var city = cityInputEl.value.trim();
+    if (city) {
+        getWeather(city);
+    }
 };
 
 var saveSearchHistory = function () {
 
 };
 
-var getWeather = function(city) {
+var getWeather = function (city) {
+    var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
+
+    fetch(apiURL)
+        .then(function (response) {
+            response.json().then(function(data){
+                displayWeather(city, data);
+            })
+        });
 
 };
 
