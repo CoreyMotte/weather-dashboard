@@ -80,14 +80,28 @@ var getUvIndex = function (lat, lon) {
     fetch(apiUrl)
         .then(function (response) {
             response.json().then(function (data) {
-                console.log(data);
+                displayUv(data);
             });
         });
 };
 
+var displayUv = function (uvIndex) {
+    var indexEl = document.createElement("div");
+    indexEl.textContent = "UV Index: ";
+    indexEl.classList = "list-group-item";
+    
+    var indexVal = document.createElement("span");
+    indexVal.textContent = uvIndex.value;
+    
+    indexEl.appendChild(indexVal);
+    currentResultEl.appendChild(indexEl);
+}
+
 function capitalizeLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+
 
 searchFormEl.addEventListener("submit", function (event) {
     event.preventDefault();
