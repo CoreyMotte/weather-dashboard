@@ -53,23 +53,24 @@ var displayWeather = function (search, weather) {
     currentSearchEl.appendChild(weatherIcon);
 
     var tempEl = document.createElement("span");
+    var humidityEl = document.createElement("span");
+    var windEl = document.createElement("span");
+
     tempEl.textContent = "Temp: " + weather.main.temp + " °F";
     tempEl.classList = "list-group-item";
     currentResultEl.appendChild(tempEl);
 
-    var humidityEl = document.createElement("span");
     humidityEl.textContent = "Humidity: " + weather.main.humidity + "%";
     humidityEl.classList = "list-group-item";
     currentResultEl.appendChild(humidityEl);
 
-    var windEl = document.createElement("span");
     windEl.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
     windEl.classList = "list-group-item";
     currentResultEl.appendChild(windEl);
 
     var lat = weather.coord.lat;
     var lon = weather.coord.lon;
-    
+
     getUvIndex(lat, lon);
 
 
@@ -89,10 +90,10 @@ var displayUv = function (uvIndex) {
     var indexEl = document.createElement("div");
     indexEl.textContent = "UV Index: ";
     indexEl.classList = "list-group-item";
-    
+
     var indexVal = document.createElement("span");
     indexVal.textContent = uvIndex.value;
-    
+
     indexEl.appendChild(indexVal);
     currentResultEl.appendChild(indexEl);
 }
@@ -101,7 +102,9 @@ function capitalizeLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+var getFiveDay = function (weather) {
 
+}
 
 searchFormEl.addEventListener("submit", function (event) {
     event.preventDefault();
