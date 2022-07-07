@@ -55,6 +55,17 @@ var displayWeather = function (search, weather) {
     var tempEl = document.createElement("span");
     tempEl.textContent = "Temp: " + weather.main.temp + " °F";
     tempEl.classList = "list-group-item";
+    currentResultEl.appendChild(tempEl);
+
+    var humidityEl = document.createElement("span");
+    humidityEl.textContent = "Humidity: " + weather.main.humidity + "%";
+    humidityEl.classList = "list-group-item";
+    currentResultEl.appendChild(humidityEl);
+
+    var windEl = document.createElement("span");
+    windEl.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
+    windEl.classList = "list-group-item";
+    currentResultEl.appendChild(windEl);
 
 };
 
