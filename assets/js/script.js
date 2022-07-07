@@ -13,6 +13,16 @@ var saveSearchHistory = function () {
     localStorage.setItem("search-history", JSON.stringify(cities));
 };
 
+var createHistoryButtons = function (previousSearch) {
+    var lastSearchEl = document.createElement("button");
+    lastSearchEl.textContent = previousSearch;
+    lastSearchEl.classList = "w-100 btn-light border pb-2";
+    lastSearchEl.setAttribute("history-city", previousSearch);
+    lastSearchEl.setAttribute("type", "submit");
+
+    prevSearchEl.prepend(lastSearchEl);
+}
+
 var getWeather = function (city) {
     var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
 
@@ -37,6 +47,7 @@ var getUvIndex = function () {
 searchFormEl.addEventListener("submit", function(event) {
     event.preventDefault();
     var city = cityInputEl.value.trim();
+    // if city is not null
     if (city) {
         getWeather(city);
         cities.unshift({city});
@@ -45,4 +56,5 @@ searchFormEl.addEventListener("submit", function(event) {
         alert("Please enter a city!");
     }
     saveSearchHistory();
+    createHistoryButtons(city);
 });
