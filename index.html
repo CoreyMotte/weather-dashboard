@@ -15,15 +15,32 @@
 
     <main class="container">
         <div class="row">
-            <div class="col-12 col-md-3 p-1 search-column">
+            <div class="col-12 col-md-3 p-1">
                 <form id="search-form">
                     <h3>Search for a city...</h3>
                     <input type="text" id="city" class="form-input"/>
                     <button type="submit" class="btn btn-primary">Search</button>
-
                 </form>
+
+                <!-- Empty container element to house generated search history HTML elements -->
+                <div id="previous-search-elements" class="previous-search"></div>
+            </div>
+
+            <!-- Set up container for API results -->
+            <div class="col-12 col-md-9">
+                <div class="row border" id="current-forecast">
+                    <div class="col-12">
+                        <h3 id="current-search"></h3>
+                        <div class="list-group" id="current-search-container"></div>
+                    </div>
+                </div>
             </div>
         </div>
+        
+
+
+
+
     </main>
 
 
