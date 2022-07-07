@@ -28,7 +28,7 @@ var getWeather = function (city) {
 
     fetch(apiUrl)
         .then(function (response) {
-            response.json().then(function(data){
+            response.json().then(function (data) {
                 displayWeather(city, data);
             });
         });
@@ -36,7 +36,25 @@ var getWeather = function (city) {
 };
 
 var displayWeather = function (search, weather) {
-    console.log(search, weather);
+
+    // clear current displayed results
+    currentSearchEl.textContent = "";
+    currentSearchEl.textContent = capitalizeLetter(search);
+
+    console.log(weather);
+
+    // generate elements for current search
+    var todaysDate = document.createElement("span")
+    todaysDate.textContent = " on " + moment(weather.dt.value).format("MMM D, YYYY");
+    currentSearchEl.appendChild(todaysDate);
+
+    var weatherIcon = document.createElement("img");
+    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+    currentSearchEl.appendChild(weatherIcon);
+
+    var tempEl = document.createElement("span");
+    tempEl.textContent = "Temp: " + weather.main.temp + " °F";
+    tempEl.classList = "list-group-item";
 
 };
 
@@ -44,13 +62,17 @@ var getUvIndex = function () {
 
 };
 
-searchFormEl.addEventListener("submit", function(event) {
+function capitalizeLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+searchFormEl.addEventListener("submit", function (event) {
     event.preventDefault();
     var city = cityInputEl.value.trim();
     // if city is not null
     if (city) {
         getWeather(city);
-        cities.unshift({city});
+        cities.unshift({ city });
         cityInputEl.value = "";
     } else {
         alert("Please enter a city!");
@@ -59,9 +81,9 @@ searchFormEl.addEventListener("submit", function(event) {
     createHistoryButtons(city);
 });
 
-prevSearchEl.addEventListener("click", function(event) {
+prevSearchEl.addEventListener("click", function (event) {
     var city = event.target.getAttribute("history-city");
-    if(city){
+    if (city) {
         getWeather(city);
     }
 });
