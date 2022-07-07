@@ -67,10 +67,22 @@ var displayWeather = function (search, weather) {
     windEl.classList = "list-group-item";
     currentResultEl.appendChild(windEl);
 
+    var lat = weather.coord.lat;
+    var lon = weather.coord.lon;
+    
+    getUvIndex(lat, lon);
+
+
 };
 
-var getUvIndex = function () {
-
+var getUvIndex = function (lat, lon) {
+    var apiUrl = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`;
+    fetch(apiUrl)
+        .then(function (response) {
+            response.json().then(function (data) {
+                console.log(data);
+            });
+        });
 };
 
 function capitalizeLetter(string) {
